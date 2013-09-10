@@ -61,41 +61,67 @@ for table in POINTER_TABLES:
 
         messages[table + pointer] = message
 
+
+def is_a_char(value):
+    if value[0] == 0x0f:
+        return ("\n", value[1:])
+
+    if len(value) != 2:
+        return False
+
+    high, low = tuple(value)
+
+    value = (2**8 * high + low)
+    if value == 0x0103:
+        return "→"
+    elif value == 0x0102:
+        return "\n\n"
+    elif ALL_START < value < KANJI_END:
+        if value not in byte2str:
+            return value
+        else:
+            return byte2str[value]
+    else:
+        return False
+
+
 f = open("output.txt", "w")
 for address, message in sorted(messages.items()):
-    f.write("0x%x\n" % address)
+    f.write("0x%x\n--------\n" % address)
+    skip_next = False
     formatted = ""
-    last_char = None
-    for m in message:
-        if last_char:
-            temp = (2**8 * last_char + m)
-            if ALL_START < temp < KANJI_END and temp not in byte2str:
-                unknown[temp] += 1
+    for n, _ in enumerate(message):
+        if skip_next:
+            skip_next = False
+            continue
 
-            if temp == 0x0103:
-                formatted += "→"
-                last_char = None
-            elif temp == 0x0102:
-                formatted += "\n\n"
-                last_char = None
-            elif any(map(lambda (x, y): x <= temp <= y, known_ranges)):
-                k = byte2str[temp]
-                formatted += k
-                last_char = None
-            else:
-                if formatted and formatted[-1] not in " \n":
+        me = message[n:n+2]
+        mechar = is_a_char(message[n:n+2])
+        if mechar:
+            lnext = message[n+1:n+3]
+            mnext = message[n+2:n+4]
+            rnext = message[n+3:n+5]
+            if is_a_char(lnext) != False and is_a_char(rnext) != False:
+                if is_a_char(mnext) == False:
+                    continue
+            if type(mechar) is tuple:
+                formatted = formatted + mechar[0]
+                continue
+            elif type(mechar) is int:
+                if formatted and formatted[-1] not in [' ', '\n']:
                     formatted += " "
-                formatted += "0x" + ("%x" % last_char).zfill(2) + " "
-                last_char = m
-        elif m ==  0x0f:
-            formatted += "\n"
-            last_char = None
+                formatted += "0x%x 0x%x " % tuple(me)
+                unknown[mechar] += 1
+            else:
+                formatted += mechar
+            skip_next = True
         else:
-            last_char = m
+            if formatted and formatted[-1] not in [' ', '\n']:
+                formatted += " "
+            formatted += "0x%x " % me[0]
 
-    formatted = formatted.strip()
-    f.write(formatted)
-    f.write("\n\n")
+    f.write(formatted.replace(" \n", "\n").strip())
+    f.write("\n\n--------\n")
 
 for char, count in sorted(unknown.items(), key=lambda (x,y): y, reverse=True):
     f.write(("%x" % char).zfill(4) + " %d\n" % count)
