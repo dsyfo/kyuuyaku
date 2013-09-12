@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+ALL_START = 0x8141
+KANJI_START = 0x889f
+KANJI_END = 0x9872
+
 table = open("table.txt")
 
 str2byte = {}
@@ -41,6 +45,14 @@ POINTER_TABLES = [0x80000,
                   0x90000,
                   0x98000,
                   0x158000]
+
+
+def is_kanji(value):
+    return KANJI_START <= ord(value) <= KANJI_END
+
+
+def is_a_char(value):
+    return ALL_START <= ord(value) <= KANJI_END
 
 
 def get_messages():

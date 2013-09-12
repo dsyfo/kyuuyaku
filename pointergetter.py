@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-from utils import str2byte, byte2str, known_ranges, get_messages
+from utils import (str2byte, byte2str, known_ranges, get_messages,
+                   ALL_START, KANJI_START, KANJI_END)
 from collections import defaultdict
-ALL_START = 0x8141
-KANJI_START = 0x889f
-KANJI_END = 0x9872
 
 kanji = set([])
 unknown = defaultdict(int)
 
 
-def is_a_char(value):
+def char_check(value):
     if value[0] == 0x0f:
         return ("\n", value[1:])
 
@@ -44,13 +42,13 @@ for address, message in sorted(get_messages().items()):
             continue
 
         me = message[n:n+2]
-        mechar = is_a_char(message[n:n+2])
+        mechar = char_check(message[n:n+2])
         if mechar:
             lnext = message[n+1:n+3]
             mnext = message[n+2:n+4]
             rnext = message[n+3:n+5]
-            if is_a_char(lnext) != False and is_a_char(rnext) != False:
-                if is_a_char(mnext) == False:
+            if char_check(lnext) != False and char_check(rnext) != False:
+                if char_check(mnext) == False:
                     continue
             if type(mechar) is tuple:
                 formatted = formatted + mechar[0]
