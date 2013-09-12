@@ -24,13 +24,15 @@ def reorg_ocr(output):
 
 
 while klist:
-    charblock = CharBlock(image_id=counter)
+    charblock = CharBlock(image="kanji%s.png" % str(counter).zfill(3))
     charblock.save()
     kblock, klist = klist[:KANJI_PER_IMAGE], klist[KANJI_PER_IMAGE:]
     for n, k in enumerate(kblock):
         char = Char(code=k)
         char.save()
-        CharBlockChar(block=charblock, char=char, location=n).save()
+        segment, location = (n / KANJI_PER_SEG), (n % KANJI_PER_SEG)
+        CharBlockChar(block=charblock, char=char,
+                      segment=segment, location=location).save()
 
     system("tesseract specialkanji/kanji%s.png output -l jpn"
            % str(counter).zfill(3))
