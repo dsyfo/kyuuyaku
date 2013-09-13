@@ -1,10 +1,10 @@
 <img src="{{MEDIA_URL}}{{block.image}}">
 <form action="." method="post">{% csrf_token %}
-<br>What are the four kanji in the {{column}} column, row {{row}}?
-<br><small>Type "?" if you don't know.</small>
-<br>
-<br><input type="text" name="values" autofocus>
-<br><input type="submit" value="Submit">
+    <br>What are the four kanji in the {{column}} column, row {{row}}?
+    <br><small>Type "?" if you don't know.</small>
+    <br>
+    <br><input type="text" name="values" autofocus>
+    <br><input type="submit" value="Submit">
 </form>
 {% if cbocr %}
     Suggested by optical character recognition:
@@ -13,7 +13,3 @@
 <br>
 <br>
 {{completed}}/{{total}} complete!
-<br>
-{% for char in chars %}
-    <br>{{char.code}} {{char.value}} {{char.votes}}
-{% endfor %}
