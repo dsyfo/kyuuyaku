@@ -79,10 +79,15 @@ class Message(models.Model):
             return choice(Message.objects.all())
 
     @property
-    def formatted(self):
+    def info(self):
         if not Char.lookup:
             Char.generate_lookup()
-        formatted, _ = gen_formatted(self.data, Char.lookup)
+        formatted, unknowns = gen_formatted(self.data, Char.lookup)
+        return formatted, unknowns
+
+    @property
+    def formatted(self):
+        formatted, _ = self.info
         return formatted
 
     def get_translation(self):

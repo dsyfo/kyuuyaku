@@ -103,8 +103,10 @@ def votemessage(request, num=None):
             return HttpResponseRedirect("/vote/message")
 
     request.session['message'] = message
+    formatted, unknowns = message.info
     data = RequestContext(request,
-            {'formatted': message.formatted,
+            {'formatted': formatted,
+             'unknowns': sorted(["%x" % u for u in unknowns]),
              'pointer': "%x" % message.pointer,
              'translation': message.get_translation()})
     return render_to_response('votemessage.html', data)

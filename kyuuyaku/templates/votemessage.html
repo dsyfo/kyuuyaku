@@ -11,3 +11,10 @@
     <small>Someone else thinks it says:</small>
     <br>{{translation}}
 {% endif %}
+
+Unknown characters:
+<span style="font-family: monospace;">
+{% for key in unknowns %}
+<br><a href = "/vote/block/{{key}}">{{key}}</a>
+{% endfor %}
+</span>
