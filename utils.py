@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
+
 ALL_START = 0x8141
 KANJI_START = 0x889f
 KANJI_END = 0x9872
@@ -103,6 +105,73 @@ def get_messages():
             messages[table + pointer] = message.strip()
 
     return messages
+
+
+def char_check(value, lookup=None):
+    lookup = lookup or byte2str
+
+    if value[0] == 0x0f:
+        return ("\n", value[1:])
+
+    if len(value) != 2:
+        return False
+
+    high, low = tuple(value)
+
+    value = (2**8 * high + low)
+    if value == 0x0103:
+        return "→"
+    elif value == 0x0102:
+        return "\n\n"
+    elif ALL_START < value < KANJI_END:
+        if value not in lookup:
+            return value
+        else:
+            return lookup[value]
+    else:
+        return False
+
+
+def gen_formatted(message, lookup=None):
+    if type(message) in [str, unicode]:
+        message = map(lambda w: int(w, 16), message.strip().split())
+
+    formatted = u""
+    skip_next = False
+    unknown = defaultdict(int)
+    for n, _ in enumerate(message):
+        if skip_next:
+            skip_next = False
+            continue
+
+        me = message[n:n+2]
+        mechar = char_check(message[n:n+2], lookup)
+        if mechar:
+            lnext = message[n+1:n+3]
+            mnext = message[n+2:n+4]
+            rnext = message[n+3:n+5]
+            if (char_check(lnext, lookup) != False and
+                    char_check(rnext, lookup) != False and
+                    char_check(mnext, lookup) == False):
+                continue
+            if type(mechar) is tuple:
+                formatted = formatted + mechar[0]
+                continue
+            elif type(mechar) is int:
+                if formatted and formatted[-1] not in [' ', '\n']:
+                    formatted += " "
+                formatted += "0x%x 0x%x " % tuple(me)
+                unknown[mechar] += 1
+            else:
+                if type(mechar) is str:
+                    mechar = mechar.decode('utf-8')
+                formatted += mechar
+            skip_next = True
+        else:
+            if formatted and formatted[-1] not in [' ', '\n']:
+                formatted += " "
+            formatted += "0x%x " % me[0]
+    return formatted.replace(" \n", "\n").strip(), unknown
 
 
 if __name__ == "__main__":

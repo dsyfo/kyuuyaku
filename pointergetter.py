@@ -1,72 +1,20 @@
 # -*- coding: utf-8 -*-
-from utils import (str2byte, byte2str, known_ranges, get_messages,
-                   ALL_START, KANJI_START, KANJI_END)
+from utils import get_messages, gen_formatted
 from collections import defaultdict
 
 kanji = set([])
 unknown = defaultdict(int)
 
-
-def char_check(value):
-    if value[0] == 0x0f:
-        return ("\n", value[1:])
-
-    if len(value) != 2:
-        return False
-
-    high, low = tuple(value)
-
-    value = (2**8 * high + low)
-    if value == 0x0103:
-        return "→"
-    elif value == 0x0102:
-        return "\n\n"
-    elif ALL_START < value < KANJI_END:
-        if value not in byte2str:
-            return value
-        else:
-            return byte2str[value]
-    else:
-        return False
-
-
 f = open("output.txt", "w")
 for address, message in sorted(get_messages().items()):
     message = [int(m, 16) for m in message.split()]
     f.write("0x%x\n--------\n" % address)
-    skip_next = False
-    formatted = ""
-    for n, _ in enumerate(message):
-        if skip_next:
-            skip_next = False
-            continue
 
-        me = message[n:n+2]
-        mechar = char_check(message[n:n+2])
-        if mechar:
-            lnext = message[n+1:n+3]
-            mnext = message[n+2:n+4]
-            rnext = message[n+3:n+5]
-            if char_check(lnext) != False and char_check(rnext) != False:
-                if char_check(mnext) == False:
-                    continue
-            if type(mechar) is tuple:
-                formatted = formatted + mechar[0]
-                continue
-            elif type(mechar) is int:
-                if formatted and formatted[-1] not in [' ', '\n']:
-                    formatted += " "
-                formatted += "0x%x 0x%x " % tuple(me)
-                unknown[mechar] += 1
-            else:
-                formatted += mechar
-            skip_next = True
-        else:
-            if formatted and formatted[-1] not in [' ', '\n']:
-                formatted += " "
-            formatted += "0x%x " % me[0]
-
-    f.write(formatted.replace(" \n", "\n").strip())
+    formatted, unk = gen_formatted(message)
+    for key, value in unk.items():
+        if value:
+            unknown[key] += value
+    f.write(formatted.encode('utf-8'))
     f.write("\n\n--------\n")
 
 for char, count in sorted(unknown.items(), key=lambda (x,y): y, reverse=True):
