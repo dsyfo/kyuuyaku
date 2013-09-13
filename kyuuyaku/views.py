@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from kyuuyaku.models import Char, CharBlockOCR, CharVote
+from kyuuyaku.models import Char, CharBlockOCR, CharVote, Message, MessageVote
 
 from random import choice
 
@@ -23,7 +23,6 @@ def voteblock(request):
             chars = (Char.objects.filter(charblockchar__block=cbc.block,
                                          charblockchar__segment=cbc.segment)
                      .order_by('pk'))
-            assert chars.count() <= 4
             ip = request.META.get('HTTP_X_FORWARDED_FOR')
             if ip:
                 ip = ip.split(',')[0]
@@ -64,3 +63,32 @@ def voteblock(request):
              'column': column})
 
     return render_to_response('voteblock.html', data)
+
+
+def votemessage(request):
+    if request.method == 'POST':
+        if 'text' in request.POST:
+            text = request.POST['text'].strip()
+            ip = request.META.get('HTTP_X_FORWARDED_FOR')
+            if ip:
+                ip = ip.split(',')[0]
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+
+            message = request.session['message']
+            if not MessageVote.objects.filter(ip=ip, message=message):
+                MessageVote(ip=ip, message=message, translation=text).save()
+            else:
+                mv = MessageVote.objects.get(ip=ip, message=message)
+                mv.translation = text
+                mv.save()
+
+        return HttpResponseRedirect(".")
+
+    message = Message.get_lowvote_message()
+    request.session['message'] = message
+    data = RequestContext(request,
+            {'formatted': message.formatted,
+             'pointer': "%x" % message.pointer,
+             'translation': message.get_translation()})
+    return render_to_response('votemessage.html', data)

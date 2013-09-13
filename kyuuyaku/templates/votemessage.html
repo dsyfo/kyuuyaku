@@ -1,0 +1,13 @@
+<form action="." method="post">{% csrf_token %}
+    <span style="font-family: monospace;">
+        Message at 0x{{pointer}}:
+        <big>{{formatted|linebreaks}}</big>
+    </span>
+    <br>What does this say?
+    <br><textarea name="text" cols="25" rows="5" autofocus></textarea>
+    <br><input type="submit" value="Submit">
+</form>
+{% if translation %}
+    <small>Someone else thinks it says:</small>
+    <br>{{translation}}
+{% endif %}

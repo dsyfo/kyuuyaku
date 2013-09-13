@@ -2,6 +2,8 @@ from django.db import models
 from collections import Counter
 from random import choice
 
+from utils import gen_formatted
+
 class Char(models.Model):
     code = models.IntegerField(unique=True)
     value = models.CharField(max_length=1, null=True)
@@ -10,19 +12,34 @@ class Char(models.Model):
     votes = models.IntegerField(default=0)
 
     approx_low = 999999
+    lookup = {}
+
+    def save(self):
+        if Char.approx_low >= self.votes and self.charblockchar_set:
+            Char.approx_low = self.votes + 1
+        super(Char, self).save()
+        if self.value:
+            if not Char.lookup:
+                Char.generate_lookup()
+            else:
+                Char.lookup[self.code] = self.value
 
     @staticmethod
     def get_lowvote_char():
-        chars = Char.objects.filter(votes__lte=Char.approx_low).all()
+        chars = Char.objects.filter(
+                votes__lte=Char.approx_low,
+                charblockchar__isnull=False).all()
         if chars:
             return choice(chars)
         else:
             return choice(Char.objects.all())
 
-    def save(self):
-        if Char.approx_low >= self.votes:
-            Char.approx_low = self.votes + 1
-        super(Char, self).save()
+    @staticmethod
+    def generate_lookup():
+        Char.lookup = {}
+        for c in Char.objects.all():
+            if c.value:
+                Char.lookup[c.code] = c.value
 
 
 class CharBlock(models.Model):
@@ -52,6 +69,28 @@ class Message(models.Model):
     pointer = models.IntegerField(unique=True)
     data = models.TextField(null=False)
     text = models.TextField(null=True)
+
+    @staticmethod
+    def get_lowvote_message():
+        messages = Message.objects.filter(messagevote__isnull=True).all()
+        if messages:
+            return choice(messages)
+        else:
+            return choice(Message.objects.all())
+
+    @property
+    def formatted(self):
+        if not Char.lookup:
+            Char.generate_lookup()
+        formatted, _ = gen_formatted(self.data, Char.lookup)
+        return formatted
+
+    def get_translation(self):
+        trans = self.messagevote_set.all()
+        if trans:
+            return choice(trans).translation
+        else:
+            return None
 
 
 class Vote(models.Model):
