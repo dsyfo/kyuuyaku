@@ -6,6 +6,8 @@ from kyuuyaku.views import voteblock, votemessage
 urlpatterns = patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': settings.MEDIA_ROOT}),
-        url(r'^voteblock/', voteblock),
-        url(r'^votemessage/', votemessage),
+        url(r'^vote/block$', voteblock),
+        url(r'^vote/block/(\w+)', voteblock),
+        url(r'^vote/message$', votemessage),
+        url(r'^vote/message/(\w+)', votemessage),
 )

@@ -11,7 +11,7 @@ def is_unicode_kanji(value):
     return 0x3400 <= ord(value) <= 0x9fa0
 
 
-def voteblock(request):
+def voteblock(request, num=None):
     if request.method == 'POST':
         if 'values' in request.POST:
             values = request.POST['values'].strip()
@@ -42,7 +42,15 @@ def voteblock(request):
 
         return HttpResponseRedirect(".")
 
-    char = Char.get_lowvote_char()
+    if not num:
+        char = Char.get_lowvote_char()
+    else:
+        try:
+            num = int(num, 16)
+            char = Char.objects.get(code=num)
+        except (ValueError, Char.DoesNotExist):
+            return HttpResponseRedirect("/vote/block")
+
     cbc = choice(char.charblockchar_set.all())
     block = cbc.block
     try:
@@ -65,7 +73,7 @@ def voteblock(request):
     return render_to_response('voteblock.html', data)
 
 
-def votemessage(request):
+def votemessage(request, num=None):
     if request.method == 'POST':
         if 'text' in request.POST:
             text = request.POST['text'].strip()
@@ -85,7 +93,15 @@ def votemessage(request):
 
         return HttpResponseRedirect(".")
 
-    message = Message.get_lowvote_message()
+    if not num:
+        message = Message.get_lowvote_message()
+    else:
+        try:
+            num = int(num, 16)
+            message = Message.objects.get(pointer=num)
+        except (ValueError, Message.DoesNotExist):
+            return HttpResponseRedirect("/vote/message")
+
     request.session['message'] = message
     data = RequestContext(request,
             {'formatted': message.formatted,
