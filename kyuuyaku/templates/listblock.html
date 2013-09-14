@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 {% load custom_tags %}
 <span style="font-family: monospace; font-size: 12pt">
 {% for char in chars %}
@@ -8,3 +11,4 @@
     <br>
 {% endfor %}
 </span>
+{% endblock %}

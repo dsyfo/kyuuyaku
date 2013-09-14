@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <form action="." method="post">{% csrf_token %}
     <span style="font-family: monospace;">
         Message at 0x{{pointer}}:
@@ -19,3 +22,4 @@
 <br><a href = "/vote/block/{{key}}">{{key}}</a>
 {% endfor %}
 </span>
+{% endblock %}

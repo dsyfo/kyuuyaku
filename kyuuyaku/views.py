@@ -63,7 +63,7 @@ def voteblock(request, num=None):
 
     request.session['cbc'] = cbc
     data = RequestContext(request,
-            {'block': block,
+            {'kblock': block,
              'cbocr': cbocr,
              'row': row,
              'completed': Char.objects.exclude(value=None).count(),
