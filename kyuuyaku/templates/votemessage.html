@@ -16,10 +16,16 @@
     <br>{{comment.comment}}
     <br>
 {% endfor %}
-<br><small>Unknown characters:</small>
+<br>
 <span style="font-family: monospace;">
+<br>Unknown characters:
 {% for key in unknowns %}
-<br><a href = "/vote/block/{{key}}">{{key}}</a>
+<br><a href = "/block/vote/{{key}}">{{key}}</a>
+{% endfor %}
+<br>
+<br>Known characters:
+{% for value, code in knowns %}
+<a href = "/block/vote/{{code}}">{{value}}</a>
 {% endfor %}
 </span>
 {% endblock %}

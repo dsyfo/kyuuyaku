@@ -2,7 +2,7 @@ from django.db import models
 from collections import Counter
 from random import choice
 
-from utils import gen_formatted
+from utils import gen_formatted, is_unicode_kanji
 
 class Char(models.Model):
     code = models.IntegerField(unique=True)
@@ -13,6 +13,7 @@ class Char(models.Model):
 
     approx_low = 999999
     lookup = {}
+    reverse_lookup = {}
 
     def save(self):
         if Char.approx_low >= self.votes and self.charblockchar_set:
@@ -37,9 +38,11 @@ class Char(models.Model):
     @staticmethod
     def generate_lookup():
         Char.lookup = {}
+        Char.reverse_lookup = {}
         for c in Char.objects.all():
             if c.value:
                 Char.lookup[c.code] = c.value
+                Char.reverse_lookup[c.value] = c.code
 
 
 class CharBlock(models.Model):
@@ -83,11 +86,12 @@ class Message(models.Model):
         if not Char.lookup:
             Char.generate_lookup()
         formatted, unknowns = gen_formatted(self.data, Char.lookup)
-        return formatted, unknowns
+        knowns = set(c for c in formatted if is_unicode_kanji(c))
+        return formatted, unknowns, knowns
 
     @property
     def formatted(self):
-        formatted, _ = self.info
+        formatted, _, _ = self.info
         return formatted
 
 

@@ -99,10 +99,12 @@ def votemessage(request, num=None):
             return HttpResponseRedirect("/message/vote")
 
     request.session['message'] = message
-    formatted, unknowns = message.info
+    formatted, unknowns, knowns = message.info
+    knowns= [(k, "%x" % Char.reverse_lookup[k]) for k in knowns]
     data = RequestContext(request,
             {'formatted': formatted,
              'unknowns': sorted(["%x" % u for u in unknowns]),
+             'knowns': knowns,
              'pointer': "%x" % message.pointer,
              'comments': message.messagevote_set.order_by('modified')})
     return render_to_response('votemessage.html', data)

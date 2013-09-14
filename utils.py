@@ -4,6 +4,8 @@ from collections import defaultdict
 ALL_START = 0x8141
 KANJI_START = 0x889f
 KANJI_END = 0x9872
+MIN_UNICODE_KANJI = u"\u4e00"
+MAX_UNICODE_KANJI = u"\u9faf"
 
 table = open("table.txt")
 
@@ -51,6 +53,13 @@ POINTER_TABLES = [0x80000,
 
 def is_kanji(value):
     return KANJI_START <= ord(value) <= KANJI_END
+
+
+def is_unicode_kanji(char):
+    if MIN_UNICODE_KANJI <= char <= MAX_UNICODE_KANJI:
+        return True
+    else:
+        return False
 
 
 def is_a_char(value):
