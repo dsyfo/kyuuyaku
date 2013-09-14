@@ -22,7 +22,7 @@ USE_TZ = True
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/site_media/'
 MEDIA_ROOT = path.join(path.dirname(path.abspath(__file__)), "media")
 
 TEMPLATE_DIRS = (

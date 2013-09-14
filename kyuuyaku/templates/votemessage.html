@@ -20,12 +20,12 @@
 <span style="font-family: monospace;">
 <br>Unknown characters:
 {% for key in unknowns %}
-<br><a href = "/block/vote/{{key}}">{{key}}</a>
+<br><a href = "/kyuuyaku/block/vote/{{key}}">{{key}}</a>
 {% endfor %}
 <br>
 <br>Known characters:
 {% for value, code in knowns %}
-<a href = "/block/vote/{{code}}">{{value}}</a>
+<a href = "/kyuuyaku/block/vote/{{code}}">{{value}}</a>
 {% endfor %}
 </span>
 {% endblock %}

@@ -4,9 +4,7 @@
 {% load custom_tags %}
 <span style="font-family: monospace; font-size: 12pt">
 {% for char in chars %}
-    {% if char.charblockchar_set %}
-        <a href = "/block/vote/{{char.code | hexconvert}}">
-    {% endif %}
+    <a href = "/kyuuyaku/block/vote/{{char.code | hexconvert}}">
     {{char.code | hexconvert}}</a>
     {% if char.value %}
         {{char.value}} - {{char.votes}}

@@ -4,7 +4,7 @@
 {% load custom_tags %}
 <span style="font-family: monospace; font-size: 10pt">
 {% for message in my_messages %}
-    <a href = "/message/vote/{{message.pointer | hexconvert}}">{{message.pointer | hexconvert}}</a>
+    <a href = "/kyuuyaku/message/vote/{{message.pointer | hexconvert}}">{{message.pointer | hexconvert}}</a>
     {{message.formatted}}
     <br><br>
 {% endfor %}
