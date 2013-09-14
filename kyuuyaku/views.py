@@ -51,7 +51,11 @@ def voteblock(request, num=None):
         except (ValueError, Char.DoesNotExist):
             return HttpResponseRedirect("/block/vote")
 
-    cbc = choice(char.charblockchar_set.all())
+    try:
+        cbc = choice(char.charblockchar_set.all())
+    except IndexError:
+        return HttpResponseRedirect("/block/vote")
+
     block = cbc.block
     try:
         cbocr = CharBlockOCR.objects.get(block=block, segment=cbc.segment)
