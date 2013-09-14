@@ -123,7 +123,7 @@ def char_check(value, lookup=None):
         return "→"
     elif value == 0x0102:
         return "\n\n"
-    elif ALL_START < value < KANJI_END:
+    elif ALL_START <= value <= KANJI_END:
         if value not in lookup:
             return value
         else:
