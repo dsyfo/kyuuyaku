@@ -1,0 +1,8 @@
+{% load custom_tags %}
+<span style="font-family: monospace; font-size: 12pt">
+{% for message in my_messages %}
+    <a href = "/message/vote/{{message.pointer | hexconvert}}">{{message.pointer | hexconvert}}</a>
+    {{message.formatted}}
+    <br><br>
+{% endfor %}
+</span>

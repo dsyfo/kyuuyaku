@@ -90,13 +90,6 @@ class Message(models.Model):
         formatted, _ = self.info
         return formatted
 
-    def get_translation(self):
-        trans = self.messagevote_set.all()
-        if trans:
-            return choice(trans).translation
-        else:
-            return None
-
 
 class Vote(models.Model):
     ip = models.CharField(max_length=15)
@@ -132,7 +125,4 @@ class CharVote(Vote):
 
 class MessageVote(Vote):
     message = models.ForeignKey(Message)
-    translation = models.TextField()
-
-    class Meta:
-        unique_together = [("ip", "message")]
+    comment = models.TextField()

@@ -3,16 +3,17 @@
         Message at 0x{{pointer}}:
         <big>{{formatted|linebreaks}}</big>
     </span>
-    <br>What does this say?
+    <br>Post a comment:
     <br><textarea name="text" cols="25" rows="5" autofocus></textarea>
     <br><input type="submit" value="Submit">
 </form>
-{% if translation %}
-    <small>Someone else thinks it says:</small>
-    <br>{{translation}}
-{% endif %}
-
-Unknown characters:
+<small>Previous comments:</small>
+{% for comment in comments %}
+    <br><small><b>{{comment.modified | date:"n/j/y H:i" }}</b></small>
+    <br>{{comment.comment}}
+    <br>
+{% endfor %}
+<br><small>Unknown characters:</small>
 <span style="font-family: monospace;">
 {% for key in unknowns %}
 <br><a href = "/vote/block/{{key}}">{{key}}</a>

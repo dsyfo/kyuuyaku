@@ -49,7 +49,7 @@ def voteblock(request, num=None):
             num = int(num, 16)
             char = Char.objects.get(code=num)
         except (ValueError, Char.DoesNotExist):
-            return HttpResponseRedirect("/vote/block")
+            return HttpResponseRedirect("/block/vote")
 
     cbc = choice(char.charblockchar_set.all())
     block = cbc.block
@@ -75,8 +75,8 @@ def voteblock(request, num=None):
 
 def votemessage(request, num=None):
     if request.method == 'POST':
-        if 'text' in request.POST:
-            text = request.POST['text'].strip()
+        if 'text' in request.POST and request.POST['text'].strip():
+            text = request.POST['text'].strip()[:5000]
             ip = request.META.get('HTTP_X_FORWARDED_FOR')
             if ip:
                 ip = ip.split(',')[0]
@@ -84,23 +84,19 @@ def votemessage(request, num=None):
                 ip = request.META.get('REMOTE_ADDR')
 
             message = request.session['message']
-            if not MessageVote.objects.filter(ip=ip, message=message):
-                MessageVote(ip=ip, message=message, translation=text).save()
-            else:
-                mv = MessageVote.objects.get(ip=ip, message=message)
-                mv.translation = text
-                mv.save()
+            MessageVote(ip=ip, message=message, comment=text).save()
 
-        return HttpResponseRedirect(".")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'), '.')
 
     if not num:
         message = Message.get_lowvote_message()
+        return HttpResponseRedirect('%x' % message.pointer)
     else:
         try:
             num = int(num, 16)
             message = Message.objects.get(pointer=num)
         except (ValueError, Message.DoesNotExist):
-            return HttpResponseRedirect("/vote/message")
+            return HttpResponseRedirect("/message/vote")
 
     request.session['message'] = message
     formatted, unknowns = message.info
@@ -108,5 +104,17 @@ def votemessage(request, num=None):
             {'formatted': formatted,
              'unknowns': sorted(["%x" % u for u in unknowns]),
              'pointer': "%x" % message.pointer,
-             'translation': message.get_translation()})
+             'comments': message.messagevote_set.order_by('modified')})
     return render_to_response('votemessage.html', data)
+
+
+def listblock(request):
+    chars = Char.objects.order_by('code')
+    data = RequestContext(request, {'chars': chars})
+    return render_to_response('listblock.html', data)
+
+
+def listmessage(request):
+    messages = Message.objects.order_by('pointer')
+    data = RequestContext(request, {'my_messages': messages})
+    return render_to_response('listmessage.html', data)

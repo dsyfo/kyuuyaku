@@ -1,13 +1,15 @@
 from django.conf.urls import patterns, include, url
 import settings
 
-from kyuuyaku.views import voteblock, votemessage
+from kyuuyaku.views import voteblock, votemessage, listblock, listmessage
 
 urlpatterns = patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': settings.MEDIA_ROOT}),
-        url(r'^vote/block$', voteblock),
-        url(r'^vote/block/(\w*)', voteblock),
-        url(r'^vote/message$', votemessage),
-        url(r'^vote/message/(\w*)', votemessage),
+        url(r'^block/vote$', voteblock),
+        url(r'^block/vote/(\w*)', voteblock),
+        url(r'^block', listblock),
+        url(r'^message/vote$', votemessage),
+        url(r'^message/vote/(\w*)', votemessage),
+        url(r'^message', listmessage),
 )
