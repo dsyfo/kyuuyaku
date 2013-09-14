@@ -4,8 +4,6 @@ import settings
 from kyuuyaku.views import voteblock, votemessage, listblock, listmessage
 
 urlpatterns = patterns('',
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT}),
         url(r'^block/vote$', voteblock),
         url(r'^block/vote/(\w*)', voteblock),
         url(r'^block', listblock),
@@ -13,3 +11,9 @@ urlpatterns = patterns('',
         url(r'^message/vote/(\w*)', votemessage),
         url(r'^message', listmessage),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+            url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                {'document_root': settings.MEDIA_ROOT}),
+    )
