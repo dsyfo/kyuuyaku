@@ -115,7 +115,7 @@ class CharVote(Vote):
         values = [cv.value for cv in self.char.charvote_set.all()]
         if values:
             c = Counter(values)
-            if len(values) > 1:
+            if len(c) > 1:
                 ((x,m), (y,n)) = tuple(c.most_common(2))
                 if m == n:
                     self.char.value = None
