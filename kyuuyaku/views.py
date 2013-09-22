@@ -40,7 +40,8 @@ def voteblock(request, num=None):
                     cv.value = value
                     cv.save()
 
-        return HttpResponseRedirect(".")
+        Char.generate_lookup()
+        return HttpResponseRedirect("/kyuuyaku/block/vote/")
 
     if not num:
         char = Char.get_lowvote_char()
@@ -49,12 +50,12 @@ def voteblock(request, num=None):
             num = int(num, 16)
             char = Char.objects.get(code=num)
         except (ValueError, Char.DoesNotExist):
-            return HttpResponseRedirect("/kyuuyaku/block/vote")
+            return HttpResponseRedirect("/kyuuyaku/block/vote/")
 
     try:
         cbc = choice(char.charblockchar_set.all())
     except IndexError:
-        return HttpResponseRedirect("/kyuuyaku/block/vote")
+        return HttpResponseRedirect("/kyuuyaku/block/vote/")
 
     block = cbc.block
     try:
@@ -90,6 +91,7 @@ def votemessage(request, num=None):
             message = request.session['message']
             MessageVote(ip=ip, message=message, comment=text).save()
 
+        Char.generate_lookup()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'), '.')
 
     if not num:
