@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
 
-ALL_START = 0x8141
+ALL_START = 0x8140
 KANJI_START = 0x889f
 KANJI_END = 0x9872
 MIN_UNICODE_KANJI = u"\u4e00"
