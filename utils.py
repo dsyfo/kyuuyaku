@@ -70,54 +70,39 @@ def get_messages():
     rom = open("kyuuyaku_megami_tensei_clean.sfc", "rb")
     messages = {}
     for table in POINTER_TABLES:
+        rom.seek(table)
         assert not table % 0x8000
-        offset = 0
-        pointers = []
+        pointer = 0
+        message = ""
+        CONSEC_01 = 0
         while True:
-            if offset in pointers or offset >= 0x8000:
+            offset = rom.tell() - table
+            if offset and offset >= 0x8000:
                 break
 
-            rom.seek(table + offset)
-            pointer = rom.read(2)
-            pointer = (2**8 * ord(pointer[1]) + ord(pointer[0]))
-            pointer = pointer % 0x8000
-            pointers.append(pointer)
+            byte = ord(rom.read(1))
 
-            offset += 2
+            if byte != 0x01:
+                if CONSEC_01 >= 2:
+                    if pointer > 0:
+                        messages[table + pointer] = message.strip()
+                    message = ""
+                    pointer = offset
+            message = " ".join([message, "%x" % byte])
 
-        for pointer in pointers:
-            offset = 0
-            message = ""
-            ONE_01 = 0
-            while True:
-                if offset and not (pointer + offset) % 0x8000:
-                    break
-
-                if offset and pointer + offset in pointers:
-                    break
-
-                rom.seek(table + pointer + offset)
-                byte = ord(rom.read(1))
-
-                assert type(byte) is int
-                message = " ".join([message, "%x" % byte])
-                if byte == 0x01:
-                    if ONE_01 == 1:
-                        break
-                    elif ONE_01 == 0:
-                        ONE_01 += 1
-                elif ONE_01:
-                    ONE_01 = 0
-
-                offset += 1
-
-            messages[table + pointer] = message.strip()
+            if byte == 0x01:
+                CONSEC_01 += 1
+            else:
+                CONSEC_01 = 0
 
     return messages
 
 
 def char_check(value, lookup=None):
     lookup = lookup or byte2str
+
+    if len(value) < 1:
+        return False
 
     if value[0] == 0x0f:
         return ("\n", value[1:])
@@ -180,7 +165,9 @@ def gen_formatted(message, lookup=None):
             if formatted and formatted[-1] not in [' ', '\n']:
                 formatted += " "
             formatted += "0x%x " % me[0]
-    return formatted.replace(" \n", "\n").strip(), unknown
+    formatted = formatted.replace(" \n", "\n").split("\n")
+    formatted = [line for line in formatted if any(0x3040 <= ord(c) <= 0x30ff for c in line)]
+    return "\n".join(formatted).strip(), unknown
 
 
 if __name__ == "__main__":

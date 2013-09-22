@@ -7,10 +7,16 @@ unknown = defaultdict(int)
 
 f = open("output.txt", "w")
 for address, message in sorted(get_messages().items()):
+    if len(message) < 3:
+        continue
+
     message = [int(m, 16) for m in message.split()]
-    f.write("0x%x\n--------\n" % address)
 
     formatted, unk = gen_formatted(message)
+    if len(formatted) < 2:
+        continue
+
+    f.write("0x%x\n--------\n" % address)
     for key, value in unk.items():
         if value:
             unknown[key] += value
