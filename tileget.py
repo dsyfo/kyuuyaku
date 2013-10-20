@@ -1,7 +1,7 @@
 addresses = [0x1e8000, 0x1f0000, 0x1f8000]
 bank_size = 0x8000
 tile_size = 0x18  #bytes
-tiles_per_bank = (bank_size / tile_size) + 1
+tiles_per_bank = (bank_size / tile_size)
 width = 12
 height = width
 columns = 37
