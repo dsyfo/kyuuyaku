@@ -41,7 +41,7 @@ str2byte[' '] = 0x8140
 byte2str[0x8140] = ' '
 known_ranges.append((0x8140, 0x8140))
 
-found_kanji = [int(x.strip(), 16) for x in open("found_kanji.txt")]
+found_kanji = [int(x.strip(), 16) for x in open("all_kanji.txt")]
 
 # 0x28000
 POINTER_TABLES = [0x80000,
@@ -84,6 +84,8 @@ def get_messages():
 
             if byte != 0x01:
                 if CONSEC_01 >= 2:
+                    if pointer > 0x8000:
+                        pointer = pointer & 0x7fff
                     if pointer > 0:
                         messages[table + pointer] = message.strip()
                     message = ""
@@ -168,6 +170,41 @@ def gen_formatted(message, lookup=None):
     formatted = formatted.replace(" \n", "\n").split("\n")
     formatted = [line for line in formatted if any(0x3040 <= ord(c) <= 0x30ff for c in line)]
     return "\n".join(formatted).strip(), unknown
+
+
+def ints2int(data, bigend=True):
+    data = list(data)
+    if bigend:
+        data.reverse()
+    value = 0
+    for d in data:
+        value = (value << 8) | d
+    return value
+
+
+def int2ints(value, size, bigend=True):
+    data = []
+    for i in range(size):
+        data.append(value & 0xff)
+        value = value >> 8
+    if not bigend:
+        data.reverse()
+    return data
+
+
+def hexify(data, pad=None):
+    if pad:
+        h = lambda n: ("{0:0>%s}" % pad).format("%x" % n)
+    else:
+        h = lambda n: "%x" % n
+
+    try:
+        if type(data) in (list, tuple):
+            return map(h, data)
+        else:
+            return h(data)
+    except TypeError:
+        return None
 
 
 if __name__ == "__main__":
