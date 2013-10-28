@@ -1,8 +1,13 @@
 from sys import argv
-from utils import int2ints
+from utils import int2ints, hexify
 from shortutils import str2byte, byte2str
 from dumpshort import get_messages
 
+for char in str2byte.keys():
+    if char.lower() not in str2byte:
+        str2byte[char.lower()] = str2byte[char]
+    if char.upper() not in str2byte:
+        str2byte[char.upper()] = str2byte[char]
 
 def rewrite_names(outfile, translations, tableaddress):
     messages = get_messages(outfile, tableaddress)
@@ -30,8 +35,21 @@ def rewrite_names(outfile, translations, tableaddress):
                 message = translations[decoded].upper()
                 message = "".join(map(lambda c: chr(str2byte[c]), message))
                 changed += 1
+            else:
+                for key in sorted(translations, key=lambda x: len(x), reverse=True):
+                    if key in decoded:
+                        index = decoded.find(key)
+                        translation = translations[key]
+                        length = len(key.decode('utf8'))
+                        if len(translation) < length:
+                            translation += ' ' * (length - len(translation))
+                        translation = "".join(map(lambda c: chr(str2byte[c]), translation))
+                        message = message[:index] + translation + message[index + len(translation):]
+                        changed += 1
+                        break
             message = "".join(message)
             message += chr(0)
+            message += chr(0)  #TODO: Remove later (icon placeholder)
             outfile.write(message)
             namesaddress += len(message)
 
@@ -43,6 +61,14 @@ def rewrite_names(outfile, translations, tableaddress):
 
 if __name__ == "__main__":
     outfile = open(argv[1], 'r+b')
-    translations = dict([l.strip().split(' ') for l in open(argv[2]).readlines()])
+    translations = {}
+    for line in open(argv[2]):
+        while '  ' in line:
+            line = line.replace('  ', ' ')
+        line = line.strip().split(' ')
+        if len(line) < 2:
+            continue
+        translations[line[0].strip()] = line[1].strip()
+
     address = int(argv[3], 16)
     rewrite_names(outfile, translations, address)
