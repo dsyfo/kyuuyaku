@@ -31,6 +31,7 @@ def rewrite_names(outfile, translations, tableaddress):
 
             outfile.seek(namesaddress)
             decoded = "".join(map(lambda c: byte2str[ord(c)], message))
+            print decoded, len(message)
             if decoded in translations:
                 message = translations[decoded].upper()
                 message = "".join(map(lambda c: chr(str2byte[c]), message))
@@ -48,8 +49,9 @@ def rewrite_names(outfile, translations, tableaddress):
                         changed += 1
                         break
             message = "".join(message)
+            decoded = "".join(map(lambda c: byte2str[ord(c)], message))
+            print decoded, len(message)
             message += chr(0)
-            message += chr(0)  #TODO: Remove later (icon placeholder)
             outfile.write(message)
             namesaddress += len(message)
 
