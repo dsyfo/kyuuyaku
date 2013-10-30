@@ -2,12 +2,12 @@ from sys import argv
 from wumpshort import rewrite_names
 
 if __name__ == "__main__":
-    from shortutils import byte2str, str2byte
-    for char in str2byte.keys():
-        if char.lower() not in str2byte:
-            str2byte[char.lower()] = str2byte[char]
-        if char.upper() not in str2byte:
-            str2byte[char.upper()] = str2byte[char]
+    from shortutils import byte2str, write2byte
+    for char in write2byte.keys():
+        if char.lower() not in write2byte:
+            write2byte[char.lower()] = write2byte[char]
+        if char.upper() not in write2byte:
+            write2byte[char.upper()] = write2byte[char]
 
     outfile = open(argv[1], 'r+b')
     translations = {}
@@ -31,4 +31,4 @@ if __name__ == "__main__":
     previously=None
     for address in order:
         free, previously = rewrite_names(outfile, translations, address, previously=previously,
-                                         coders=(byte2str, str2byte, 1), free=free, pad=None)
+                                         coders=(byte2str, write2byte, 1), free=free, pad=None)

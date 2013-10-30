@@ -5,9 +5,9 @@ from dumpshort import get_messages
 def rewrite_names(outfile, translations, tableaddress, pad=' ',
                   previously=None, coders=None, free=None):
     if coders:
-        byte2str, str2byte, charsize = coders
+        byte2str, write2byte, charsize = coders
     else:
-        from shortutils import byte2str, str2byte
+        from shortutils import byte2str, write2byte
         charsize = 1
 
     messages = get_messages(outfile, tableaddress, charsize=charsize)
@@ -24,11 +24,10 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
             outfile.write(previously[message])
         else:
             decoded = "".join(map(lambda c: byte2str[ord(c)], message))
-            print decoded, len(message)
             if decoded in translations and pad is None:
                 message = translations[decoded].upper()
                 message = [c.encode('utf8') for c in message.decode('utf8')]
-                message = "".join(map(lambda c: chr(str2byte[c]), message))
+                message = "".join(map(lambda c: chr(write2byte[c]), message))
                 changed += 1
             elif pad is not None:
                 for key in sorted(translations, key=lambda x: len(x), reverse=True):
@@ -39,14 +38,13 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
                         if len(translation) < length:
                             translation += pad * (length - len(translation))
                         translation = [c.encode('utf8') for c in translation.decode('utf8')]
-                        translation = "".join(map(lambda c: chr(str2byte[c]), translation))
+                        translation = "".join(map(lambda c: chr(write2byte[c]), translation))
                         message = message[:index] + translation + message[index + len(translation):]
                         changed += 1
                         break
 
             message = "".join(message)
             decoded = "".join(map(lambda c: byte2str[ord(c)], message))
-            print decoded, len(message)
             message += chr(0)
 
             if free is not None:
@@ -57,7 +55,6 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
                         free.remove((start, end))
                         free = [(start + len(message), end)] + free
                         break
-
 
             pointer = 0x8000 | (namesaddress & 0xffff)
             pointer = int2ints(pointer, 2)
@@ -72,17 +69,17 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
         tableaddress += 2
 
     print "%x %x" % (tableaddress, namesaddress)
-    print "%s changed" % changed
+    print "%s changed\n" % changed
     return free, previously
 
 
 if __name__ == "__main__":
-    from shortutils import byte2str, str2byte
-    for char in str2byte.keys():
-        if char.lower() not in str2byte:
-            str2byte[char.lower()] = str2byte[char]
-        if char.upper() not in str2byte:
-            str2byte[char.upper()] = str2byte[char]
+    from shortutils import byte2str, write2byte
+    for char in write2byte.keys():
+        if char.lower() not in write2byte:
+            write2byte[char.lower()] = write2byte[char]
+        if char.upper() not in write2byte:
+            write2byte[char.upper()] = write2byte[char]
 
     outfile = open(argv[1], 'r+b')
     translations = {}
@@ -95,4 +92,4 @@ if __name__ == "__main__":
         translations[line[0].strip()] = line[1].strip()
 
     address = int(argv[3], 16)
-    rewrite_names(outfile, translations, address, coders=(byte2str, str2byte, 1))
+    rewrite_names(outfile, translations, address, coders=(byte2str, write2byte, 1))

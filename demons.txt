@@ -1,6 +1,6 @@
 9ビノキツネ 9Tail
 GDR1000 GDR1000
-LBー501A LBー501A
+LBー501A LB-501A
 Y・H・V・H Y.H.V.H
 あくまのほしくび DmnHead
 アイン Ayn
@@ -141,7 +141,7 @@ Y・H・V・H Y.H.V.H
 ジン Jinn
 スキュラ Scylla
 スケルトン Skeleton
-スサノオ SusanoーO
+スサノオ Susano-O
 ストーンカ Stonka
 ストーンゴーレム StoneGlm
 スパルチ Spartoi
