@@ -1,130 +1,130 @@
 #GUN
-ワルサ-PPK          WaltPPK
+ワルサーPPK         WaltPPK
 ガバメント          Gov't
-ウ-ジ-              Uzi
-デザ-トイ-グル      Deagle
+ウージー            Uzi
+デザートイーグル    Deagle
 ショットガン        Shotgun
 レイガン            Raygun
 M60マシンガン       M60
-レ-ルガン           Railgun
+レールガン          Railgun
 ドラゴンATM         Dragon
 サブバルカン        S.Vulcan
-ビ-ムライフル       B.Rifle
-スパイラルカッタ-   Spiral
+ビームライフル      B.Rifle
+スパイラルカッター  Spiral
 おうごんじゅう      Golden
 プラズマライフル    Plasma
-ギガスマッシャ-     G.Smash
-メギドファイヤ-     Megido
+ギガスマッシャー    G.Smash
+メギドファイヤー    Megido
 #KNIFE
 ジャックナイフ      Jack
 #SWORD
 せいどうのつるぎ    Bronze
-シミタ-             Scimitar
+シミター            Scimitar
 グラディウス        Gladius
-ブロ-ドソ-ド        Broad
+ブロードソード      Broad
 やこうけん          Yakou
-イクシオンソ-ド     Ixion
+イクシオンソード    Ixion
 クチナワのけん      Serpent
-こてつブレ-ド       Kotetsu
-クリスタルソ-ド     Crystal
-ヒ-トソ-ド          Heat
+こてつブレード      Kotetsu
+クリスタルソード    Crystal
+ヒートソード        Heat
 ひっさつオニゴロシ  Ogrebane #lit. one-shot goblin-slayer
 ようとうニヒル      YotoNil #yoto nihil, bewitched sword
 ふうじんけん        Fujin #wind god
-デ-モンスレイヤ-    DemonWoe #demon slayer
+デーモンスレイヤー  DemonWoe #demon slayer
 デスブレイド        Death
 クサナギのつるぎ    Kusanagi #imperial grass-mowing sword
 らいじんけん        Raijin #thunder god
 まけんムラマサ      Muramasa #cursed sword muramasa, don't know the lore
 ソロモンのおうけん  Solomon
-エクスカリバ-       Excalibur
+エクスカリバー      Excalibur
 ヴァジュラ          Vajra #buddhist sword of spiritual power?
 ヒノカグツチのけん  Kagutuchi #hinokagutsuchi
-ルシファ-のつるぎ   Lucifer
+ルシファーのつるぎ  Lucifer
 #FLAIL
 ヌンチャク          Nunchaku
-モ-ニングスタ-      Morning
+モーニングスター    Morning
 さそりムチ          Scorpion
 #STAFF
 ろくしゃくぼう      Quarter
 #MACE
 ドラゴンメイス      Dragon
 #CLAW
-ハンマハンマ-       HamaHama #mecha from some anime?
+ハンマハンマー      HamaHama #mecha from some anime?
 #AXE
 ヘカトンアックス    Hecaton
 メガトンアックス    Megaton
 #ARMOR
-ハイレグア-マ-      HighCut
+ハイレグアーマー    HighCut
 ボディコンメイル    BodyCon
-ケブラ-ベスト       Kevlar
+ケブラーベスト      Kevlar
 コンサバメイル      Orthodox
-ライトメタルス-ツ   Aluminum
+ライトメタルスーツ  Aluminum
 アイアンマッスル    Iron
-すけ-るア-マ-       Scale
-サンダ-ガ-ド        Thunder
-ヘビメタルス-ツ     Lode
-ファイヤ-ガ-ド      Fire
-フリ-ズガ-ド        Freeze
+すけーるアーマー    Scale
+サンダーガード      Thunder
+ヘビメタルスーツ    Lode
+ファイヤーガード    Fire
+フリーズガード      Freeze
 ドラゴンメイル      Dragon
-テトラジャマ-       TetraJam
-パンツァ-ア-マ-     Panzer
-ヤク-トア-マ-       Yakut #no idea what this is... Turkish armor?
-ルシファ-ア-マ-     Lucifer
+テトラジャマー      TetraJam
+パンツァーアーマー  Panzer
+ヤクートアーマー    Yakut #no idea what this is... Turkish armor?
+ルシファーアーマー  Lucifer
 #SUIT
-バトルス-ツ         Battle
-パワ-ドス-ツ        Power
-ハイパ-セ-ラ-       Seifuku #japanese school sailor uniform, written as "Hyper Sailor", ref. to sailor moon
+バトルスーツ        Battle
+パワードスーツ      Power
+ハイパーセーラー    Seifuku #japanese school sailor uniform, written as "Hyper Sailor", ref. to sailor moon
 #HELM
 ジャンクヘルメット  Junk
-スタ-リング         Sterling
+スターリング        Sterling
 アイアンヘッド      Iron
 フィリッツヘルム    Fritz
 メタルクラウン      Metal
-デュラハ-ンヘルム   Dullahan
+デュラハーンヘルム  Dullahan
 サイコヘルメット    Psycho
 ドラゴンヘルム      Dragon
-パンツァ-ヘルム     Panzer
-ヤク-トヘルム       Yakut
+パンツァーヘルム    Panzer
+ヤクートヘルム      Yakut
 マサカドのかぶと    Masakado
 #CAP
-ブレインガ-ド       Headgear
+ブレインガード      Headgear
 さんかくぼうし      Tricorn
 レッドキャップ      Red
 #MASK
-ダミ-ズヘッド       Dummy
+ダミーズヘッド      Dummy
 デビルヘッド        Devil
 ししがしら          Lion
 #ARM
-ダイヤモンドア-ム   Diamond
-ア-ムバルカン       Vulcan
-サイバ-ア-ム        Cyber
-ファイヤ-ア-ム      Fire
-ドラゴンクロ-       Dragon
-パンツァ-ア-ム      Panzer
-ヤク-トア-ム        Yakut
+ダイヤモンドアーム  Diamond
+アームバルカン      Vulcan
+サイバーアーム      Cyber
+ファイヤーアーム    Fire
+ドラゴンクロー      Dragon
+パンツァーアーム    Panzer
+ヤクートアーム      Yakut
 #HAND
 リベットナックル    Rivet
-カイザ-ナックル     Kaiser
-メタルグロ-ブ       Metal
-ク-ルミトン         CoolMitt
-クラッシャ-ハンド   Crusher
+カイザーナックル    Kaiser
+メタルグローブ      Metal
+クールミトン        CoolMitt
+クラッシャーハンド  Crusher
 デビルハンド        Devil
 ゴッドハンド        Godhand
 #CLAW
-アイアンクロ-       Ironclaw
-ルシファ-ズクロ-    Lucifer
+アイアンクロー      Ironclaw
+ルシファーズクロー  Lucifer
 #BOOT
-ウエスタンブ-ツ     Western
-ロンドンブ-ツ       London
-フラワ-ブ-ツ        Flower
-ジェットブ-ツ       Jet
-スカイブ-ツ         Sky
-ヘビメタルブ-ツ     Lode
-ハイパ-ブ-ツ        Hyper
-ドラゴンブ-ツ       Dragon
+ウエスタンブーツ    Western
+ロンドンブーツ      London
+フラワーブーツ      Flower
+ジェットブーツ      Jet
+スカイブーツ        Sky
+ヘビメタルブーツ    Lode
+ハイパーブーツ      Hyper
+ドラゴンブーツ      Dragon
 #SHOE
-ラバ-ソウル         Rubber
+ラバーソウル        Rubber
 ツウキンカイソク    Loafer
 アクマのパンプス    Devil
 #SANDAL
@@ -133,54 +133,54 @@ M60マシンガン       M60
 #FOOT
 ビッグフット        BigFoot
 #LEG
-パンツァ-レッグ     Panzer
-ヤク-トレッグ       Yakut
+パンツァーレッグ    Panzer
+ヤクートレッグ      Yakut
 #MASK
 ファルコンアイズ    Falcon
-ベビ-フェイス       Baby
-ミラ-マスク         Mirror
-フライデ-マスク     Jason
+ベビーフェイス      Baby
+ミラーマスク        Mirror
+フライデーマスク    Jason
 ガスマスク          Gas
 ウルトラアイズ      UltraEye
 #CLOAK
-カ-パマント         Karpa #no idea what this is
+カーパマント        Karpa #no idea what this is
 アゲハマント        Ageha #southeast asian swallotail butterfly
 ファントムマント    Phantom
-バ-ルのマント       Baal
+バールのマント      Baal
 #ITEMS
 だてんしのつばさ    Fallen #wing
 ほうぎょく          Jewel
 ポイズノン          Poisnon
 パララノン          Paranon
 ペトラノン          Petranon
-アギラマスト-ン     Agi
-ジオマスト-ン       Zio
-ブフラマスト-ン     Bufu
-マハラギマスト-ン   Maragi
-マハジオマスト-ン   Mazio
+アギラマストーン    Agi
+ジオマストーン      Zio
+ブフラマストーン    Bufu
+マハラギマストーン  Maragi
+マハジオマストーン  Mazio
 てなげだん          Grenade
-ミサイルランチャ-   Missile
-ハンマンチャ-ム     Hama
+ミサイルランチャー  Missile
+ハンマンチャーム    Hama
 あぶないクスリ      Risky #drink
 うしみつにんぎょう  2amDummy #straw doll used for voodoo curses, ushimitsu is the "witching hour" from 1am to 3am
 みあれのすず        Raise #bell
-ポイズンダ-ト       Poison #dart
+ポイズンダート      Poison #dart
 ひじょうぐち        Exit
 ひじょうぐち        Exit
 かみなりおこし      Kaminari #famous crispy rice snack
 あくまのかんづめ    CanDemon #demon-in-a-can?
-コアシ-ルド         Core #shield
+コアシールド        Core #shield
 せがきのれいやく    Segaki #drink
 マッスルドリンコ    Muscle #drink
 まりょくのもと      ManaCore #lit. magic source
-ソ-マ               Soma
+ソーマ              Soma
 たいりょくのこう    VIT #incense
 ちりょくのこう      INT
 つよさのこう        STR
 はやさのこう        SPD
 うんのこう          LUK
-メタルカ-ド         Metal #card
-メタルカ-ド         Metal
+メタルカード        Metal #card
+メタルカード        Metal
 アメジスト          Amethyst
 アクアマリン        Aqua
 エメラルド          Emerald
@@ -193,14 +193,14 @@ M60マシンガン       M60
 アナミラン          Anamilan
 すずきのめいし      Suzuki #business card
 すずきのめいし      Suzuki
-ちんみディナ-       Dainty #dinner
-ちんみディナ-       Dainty
-ちんみディナ-       Dainty
-ちんみディナ-       Dainty
+ちんみディナー      Dainty #dinner
+ちんみディナー      Dainty
+ちんみディナー      Dainty
+ちんみディナー      Dainty
 スタミナていしょく  Stamina #meal
-UMAディナ-          Uma #dinner
-ユ-カリスト         HolyWine #eucharist, blessed bread and wine eaten for holy communion
-ゴ-ジャスセット     Gorgeous #set, meaning a meal, maybe?
+UMAディナー         Uma #dinner
+ユーカリスト        HolyWine #eucharist, blessed bread and wine eaten for holy communion
+ゴージャスセット    Gorgeous #set, meaning a meal, maybe?
 さかさじゅうじ      Inverted #cross
 しずたま            Silence #bullet?
 しずたま            Silence
@@ -219,13 +219,13 @@ UMAディナ-          Uma #dinner
 かぜのわりふ        Wind
 つちのわりふ        Earth
 バエルのつめ        Bael #claw or talon
-たいようのピラ-     Sun #pillar
-つきのピラ-         Moon
-すいせいのピラ-     Mercury
-きんせいのピラ-     Venus
-かせいのピラ-       Mars
-もくせいのピラ-     Jupiter
-どせいのピラ-       Saturn
+たいようのピラー    Sun #pillar
+つきのピラー        Moon
+すいせいのピラー    Mercury
+きんせいのピラー    Venus
+かせいのピラー      Mars
+もくせいのピラー    Jupiter
+どせいのピラー      Saturn
 あみだりき          Amitabha #'s strength?
 なげきのたま        Grief #gem or maybe bullet
 くるいのたま        Mania
@@ -241,15 +241,15 @@ UMAディナ-          Uma #dinner
 はんごんこう        Revivify #incense
 しおみつだま        Flowing #gem, from the myth of yamasachi and umisachi
 イザナミのころも    Izanami #clothes
-メンバ-ズカ-ド      Member #card
-ヘイズル-ン         Heidrun #is this just a goat head
+メンバーズカード    Member #card
+ヘイズルーン        Heidrun #is this just a goat head
 マッカ              Macca
 マグネタイト        MAG
 あくま              Demon
 カラ                Kara #dunno
 ガルのたて          Garu
 タバサのぞう        Tabasa #statue
-おうしのキ-         Taurus #key
+おうしのキー        Taurus #key
 しゅうゆうけん      Leisure #excursion ticket
 ロルのまよけ        Loru #talisman
 アレスのくびかざり  Ares #necklace
@@ -257,13 +257,13 @@ UMAディナ-          Uma #dinner
 リックのうでわ      Rick #bracelet
 りゅうのヒゲ        Dragon #moustache?
 かみなりおこし      Kaminari #famous crispy rice snack
-ロンドンブ-ツ       London #boots
+ロンドンブーツ      London #boots
 あらたま            Rough #gem/bullet
 ラトスのぞう        Latose #statue
-ぎんのレリ-フ       Relief #made of silver
+ぎんのレリーフ      Relief #made of silver
 イザナミのころも    Izanami #clothes
 プルシキのいななき  Purski #neigh
-ル-スのこびん       Loose #bottle
+ルースのこびん      Loose #bottle
 はくりゅうのたま    W.Dragon #gem
 ふるたま            Ebbing #gem, from the myth of yamasachi and umisachi
 ちいさなカギ        Small #key
@@ -289,7 +289,7 @@ UMAディナ-          Uma #dinner
 オリハルコンのけん  Orialcon
 しゅのつるぎ        Lord
 ペルセウスのけん    Perseus
-オ-ラのつるぎ       Aura
+オーラのつるぎ      Aura
 ヒノカグツチのけん  Kagutuchi #hinokagutsuchi
 #KNIFE
 ジャックナイフ      Jack
@@ -297,34 +297,34 @@ UMAディナ-          Uma #dinner
 #FLAIL
 ヌンチャク          Nunchaku
 さそりムチ          Scorpion
-モ-ニングスタ-      Morning
+モーニングスター    Morning
 #SICKLE
 くさりがま          Chain
 ほのおのじって      Flame
 しにがみのかま      Death
 #ARMOR
 くさりかたびら      Chain
-ブレストプレ-ト     Plate
+ブレストプレート    Plate
 かっちゅう          Kachu #samurai armor plus helm
 オリハルコンメイル  Orialcon
-オ-ラのよろい       Aura
+オーラのよろい      Aura
 きりのよろい        Mist #according to some blog
 #SUIT
-コンバットス-ツ     Combat
-ファイバ-ス-ツ      Fiber
+コンバットスーツ    Combat
+ファイバースーツ    Fiber
 #SHIELD
 かしのたて          Oak
 こうてつのたて      Steel
 セラミクスのたて    Ceramic
 プラチナのたて      Platinum
 オリハルコンのたて  Orialcon
-オ-ラのたて         Aura
+オーラのたて        Aura
 ししのたて          Lion
 #HELM
 ヘルメット          Helmet
-ケブラ-ヘルメット   Kevlar
+ケブラーヘルメット  Kevlar
 まよけのかぶと      Ward
-オ-ラのかぶと       Aura
+オーラのかぶと      Aura
 #CAP
 エンジェルリング    Halo
 #CROWN
