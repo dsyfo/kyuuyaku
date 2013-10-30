@@ -1,0 +1,13 @@
+8e602 8e704
+8e802 8e909
+8ea0b 8eafd
+8ec02 8ed05
+8ee00 8eefd
+8f202 8f2ff
+8f602 8f701
+8f801 8f901
+8fa05 8fafd
+8fc02 8fcfd
+8fe02 8fefd
+8d6c6 8d9e4
+8cdfd 8cff7
