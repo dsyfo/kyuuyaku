@@ -1,7 +1,7 @@
 9ビノキツネ 9Tail
 GDR1000 GDR1000
 LBー501A LBー501A
-Y・H・V・H Y・H・V・H
+Y・H・V・H Y.H.V.H
 あくまのほしくび DmnHead
 アイン Ayn
 アエロー Aello
@@ -133,7 +133,7 @@ Y・H・V・H Y・H・V・H
 シヴァ Shiva
 ジコクテン Jikokten
 ジャイアント Giant
-ジャックフロスト J・Frost
+ジャックフロスト J.Frost
 ジャックランタン PyroJack
 ジャドウ Shadow
 ジャバウォーク Jaberwok
