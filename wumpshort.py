@@ -20,6 +20,7 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
     for message in messages:
         message = "".join(map(chr, message))
         outfile.seek(tableaddress)
+        old = message
         if message in previously:
             outfile.write(previously[message])
         else:
@@ -59,7 +60,7 @@ def rewrite_names(outfile, translations, tableaddress, pad=' ',
             pointer = 0x8000 | (namesaddress & 0xffff)
             pointer = int2ints(pointer, 2)
             pointer = "".join(map(chr, pointer))
-            previously[message] = pointer
+            previously[old] = pointer
             outfile.write(pointer)
 
             outfile.seek(namesaddress)
@@ -91,5 +92,11 @@ if __name__ == "__main__":
             continue
         translations[line[0].strip()] = line[1].strip()
 
+    if len(argv) > 4 and argv[4] == "pad":
+        pad = ' '
+    else:
+        pad = None
+
     address = int(argv[3], 16)
-    rewrite_names(outfile, translations, address, coders=(byte2str, write2byte, 1))
+    rewrite_names(outfile, translations, address, pad=pad,
+                  coders=(byte2str, write2byte, 1))
