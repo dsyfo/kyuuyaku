@@ -7,7 +7,7 @@ height = width
 columns = 37
 rows = 37 * len(addresses)
 offset = 0
-filename = "kyuuyaku_megami_tensei_clean.sfc"
+filename = "kyuuyaku_megami_tensei.sfc"
 
 if __name__ == "__main__":
     f = open(filename, 'rb')
