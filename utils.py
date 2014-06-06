@@ -41,8 +41,6 @@ str2byte[' '] = 0x8140
 byte2str[0x8140] = ' '
 known_ranges.append((0x8140, 0x8140))
 
-found_kanji = [int(x.strip(), 16) for x in open("all_kanji.txt")]
-
 # 0x28000
 POINTER_TABLES = [0x80000,
                   0x88000,
@@ -156,7 +154,9 @@ def gen_formatted(message, lookup=None):
             elif type(mechar) is int:
                 if formatted and formatted[-1] not in [' ', '\n']:
                     formatted += " "
-                formatted += "0x%x 0x%x " % tuple(me)
+                for e in me:
+                    e = ("%x" % e).zfill(2)
+                    formatted += "0x%s " % e
                 unknown[mechar] += 1
             else:
                 if type(mechar) is str:
@@ -166,9 +166,10 @@ def gen_formatted(message, lookup=None):
         else:
             if formatted and formatted[-1] not in [' ', '\n']:
                 formatted += " "
-            formatted += "0x%x " % me[0]
+            formatted += "0x%s " % ("%x" % me[0]).zfill(2)
     formatted = formatted.replace(" \n", "\n").split("\n")
-    formatted = [line for line in formatted if any(0x3040 <= ord(c) <= 0x30ff for c in line)]
+    #formatted = [line for line in formatted if any(0x3040 <= ord(c) <= 0x30ff for c in line)]
+
     return "\n".join(formatted).strip(), unknown
 
 

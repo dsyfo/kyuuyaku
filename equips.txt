@@ -58,12 +58,9 @@ M60マシンガン       M60
 ハイレグアーマー    HighCut
 ボディコンメイル    BodyCon
 ケブラーベスト      Kevlar
-コンサバメイル      Orthodox
-ライトメタルスーツ  Aluminum
-アイアンマッスル    Iron
+コンサバメイル      Business
 すけーるアーマー    Scale
 サンダーガード      Thunder
-ヘビメタルスーツ    Lode
 ファイヤーガード    Fire
 フリーズガード      Freeze
 ドラゴンメイル      Dragon
@@ -73,7 +70,10 @@ M60マシンガン       M60
 ルシファーアーマー  Lucifer
 #SUIT
 バトルスーツ        Battle
-パワードスーツ      Power
+ライトメタルスーツ  Aluminum
+ヘビメタルスーツ    Lode
+アイアンマッスル    Irongirl
+パワードスーツ      Powered
 ハイパーセーラー    Seifuku #japanese school sailor uniform, written as "Hyper Sailor", ref. to sailor moon
 #HELM
 ジャンクヘルメット  Junk
